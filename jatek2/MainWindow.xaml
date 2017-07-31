@@ -1,0 +1,82 @@
+﻿<Window x:Class="jatek2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:jatek2"
+        xmlns:app="clr-namespace:jatek2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="1025" KeyDown="Window_KeyDown"  WindowState="Maximized">
+    <Window.Resources>
+        <app:MapToGeometryConverter x:Key="MTG"/>
+        <app:BoolToVisibilityConverter x:Key="BTV"/>
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="bin/Debug/backg.png"/>
+    </Window.Background>
+    <Grid>
+        <Image Source="{Binding BL.Map, Converter={StaticResource MTG}}" Stretch="Fill" />
+        <Label Content="{Binding BL.GilisztakSzama}" VerticalAlignment="Bottom" FontSize="15" Foreground="Black" Margin="160,0,-160,0" FontFamily="Wide Latin" />
+        <Label Content="{Binding BL.Elet}" FontSize="15" Foreground="Black" VerticalAlignment="Bottom" Margin="80,0,-80,0" FontFamily="Wide Latin"/>
+        <Label Content="{Binding BL.MaradekIdo}" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="15" Foreground="Black" FontFamily="Wide Latin"/>
+            <Grid Visibility="{Binding IsInMenu, Converter={StaticResource BTV}}">
+            <Rectangle Fill="BurlyWood" Opacity="1"/>
+            <Rectangle HorizontalAlignment="Center" Margin="0,-300,0,0" Height="100" VerticalAlignment="Center" Width="200" MouseLeftButtonDown="LevelSelect_FromMenu">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="bin/Debug/palyakgomb.png" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Center" Margin="0,0,0,0" Height="100" VerticalAlignment="Center" Width="200" MouseLeftButtonDown="Help_FromMenu">
+            <Rectangle.Fill>
+                    <ImageBrush ImageSource="bin/Debug/segitseggomb.png" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Center" Margin="0,300,0,0" Height="100" VerticalAlignment="Center" Width="200" MouseLeftButtonDown="Exit">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="bin/Debug/kilepesgomb.png" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+        <Grid Visibility="{Binding IsInHelp, Converter={StaticResource BTV}}">
+            <Rectangle Fill="BurlyWood" Opacity="1"/>
+            <Rectangle HorizontalAlignment="Center" Height="500" Stroke="Black" VerticalAlignment="Center" Width="500">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="bin/Debug/segitseg.png" /> 
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Right" Height="100" VerticalAlignment="Bottom" Width="200" MouseLeftButtonDown="Menu_FromHelp">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="bin/Debug/visszagomb.png" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+        <Grid Visibility="{Binding IsInLevelChooser, Converter={StaticResource BTV}}">
+            <Rectangle Fill="BurlyWood" Opacity="1"/>
+            <Rectangle HorizontalAlignment="Right" Height="100" Margin="133,336,0,0" VerticalAlignment="Bottom" Width="200" MouseLeftButtonDown="Menu_FromLevelSelect">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="bin/Debug/visszagomb.png" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Center" Height="200" Margin="-900,0,0,0" VerticalAlignment="Center" Width="200" MouseLeftButtonDown="ElsoPalya">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="bin/Debug/elsopalya.png" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Center" Height="200" Margin="-300,0,0,0" VerticalAlignment="Center" Width="200" MouseLeftButtonDown="MasodikPalya">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="bin/Debug/masodikpalya.png" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Center" Height="200" Margin="300,0,0,0" VerticalAlignment="Center" Width="200" MouseLeftButtonDown="HarmadikPalya">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="bin/Debug/harmadikpalya.png" />
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle HorizontalAlignment="Center" Height="200" Margin="900,0,0,0" VerticalAlignment="Center" Width="200" MouseLeftButtonDown="NegyedikPalya">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="bin/Debug/negyedikpalya.png" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </Grid>
+      </Grid>
+</Window>
